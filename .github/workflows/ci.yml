@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  format:
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v10
+        with:
+          python-version: "3.13"
+      - name: Run pre-commit
+        run: uv tool run pre-commit run --all-files --show-diff-on-failure
+
+  tests:
+    name: Tests (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v10
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install project and test dependencies
+        run: uv sync --locked --group test
+      - name: Run tests
+        run: uv run --locked --group test python -m pytest
