@@ -27,7 +27,7 @@ Add the following files:
     * `html_theme`: This should be set to `"furo"`
 
 > [!tip]
-> 
+>
 > `sphinx-markdown-builder` is used to generate a markdown version of the API page, which is appended to the summary of the `online_doc.yml` workflow, which can be viewed on GitHub. After setting up your `pyproject.toml` and `docs/conf.py`, this workflow should run successfully.
 * `noxfile.py`: Add at least the following sessions. Optionally, you can add a formatting session or anything else useful, but at least include:
     * `tests`: `nox -s tests` should run your tests. Use the `tests` group defined above, do not list dependencies explicitly here.
@@ -42,8 +42,7 @@ Add the following files:
 
       ```python
       @pytest.fixture(params=list_of_permutations)
-      def ab(request):
-        ...
+      def ab(request): ...
       ```
 
       you can remove the `@pairs` decorators in `test_stdunc.py` without needing to change the argument to each test.

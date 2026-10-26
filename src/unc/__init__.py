@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import math
 import sys
-from typing import Any
+from typing import Self
 
 if sys.version_info < (3, 13):
     from typing_extensions import deprecated
@@ -12,14 +12,7 @@ else:
     from warnings import deprecated
 
 
-if sys.version_info < (3, 11):
-    from typing_extensions import Self
-else:
-    from typing import Self
-
-
 class LabUnc:
-
     """Representation of a floating point lab value with an uncertainty."""
 
     @staticmethod
@@ -79,7 +72,7 @@ class LabUnc:
         """Return the string representation of the class."""
         return f"{self.n:0.{self.ndigits}f} ± {self.s:0.{self.ndigits}f}"
 
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, other: object) -> bool:
         """Compare two instances of the class."""
         return abs(self.n - other.n) < 0.0000001 and abs(self.s - other.s) < 0.0000001
 
@@ -111,7 +104,6 @@ class LabUnc:
 
 
 class StdUnc(LabUnc):
-
     """Representation of a floating point standard value with an uncertainty."""
 
     @staticmethod

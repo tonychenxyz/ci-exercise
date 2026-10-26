@@ -1,4 +1,5 @@
 """Defines tests for the LabUnc class."""
+
 import pytest
 
 from unc import LabUnc
