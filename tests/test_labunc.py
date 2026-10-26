@@ -5,6 +5,16 @@ import pytest
 from unc import LabUnc
 
 
+def test_add_commutative(ab):
+    a, b = ab
+    assert LabUnc(*a) + LabUnc(*b) == LabUnc(*b) + LabUnc(*a)
+
+
+def test_mul_commutative(ab):
+    a, b = ab
+    assert LabUnc(*a) * LabUnc(*b) == LabUnc(*b) * LabUnc(*a)
+
+
 def test_add():
     """Test addition of two LabUnc instances."""
     assert LabUnc(10, 1) + LabUnc(10, 2) == LabUnc(20, 3)
