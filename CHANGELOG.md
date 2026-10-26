@@ -1,5 +1,7 @@
 ## WIP
 
+* fixed uv setup in ci.
+
 * fixed test install command.
 
 
