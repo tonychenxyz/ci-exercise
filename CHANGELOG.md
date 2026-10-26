@@ -1,5 +1,7 @@
 ## WIP
 
+* fixed lockfile for ci.
+
 * fixed uv setup in ci.
 
 * fixed test install command.
